@@ -3,8 +3,9 @@ package com.epicodus.guest.fairweatherfriend;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,20 +45,24 @@ public class WeatherActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) {
+            public void onResponse(Call call, Response response) throws IOException {
+
                 mWeathers = openWeatherService.processResults(response);
 
                 WeatherActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mAdapter = new WeatherListAdapter(getApplicationContext(), mWeathers);
-
+                        mWeatherDisplay.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(WeatherActivity.this);
+                        mWeatherDisplay.setLayoutManager(layoutManager);
+                        mWeatherDisplay.setHasFixedSize(true);
                     }
                 });
 
-                }
 
             }
         });
     }
+
 }

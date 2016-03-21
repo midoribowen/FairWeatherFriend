@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.pm.LauncherApps;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import okhttp3.Call;
@@ -24,6 +26,10 @@ public class OpenWeatherService {
 
     private Context mContext;
     public static final String TAG = OpenWeatherService.class.getSimpleName();
+
+    public OpenWeatherService(Context context) {
+        this.mContext = context;
+    }
 
 
     public void findWeather(String location, Callback callback) {
@@ -52,12 +58,16 @@ public class OpenWeatherService {
             String jsonData = response.body().string();
             if (response.isSuccessful()) {
                 JSONObject weatherJSON = new JSONObject(jsonData);
-                String temperature = weatherJSON.getJSONObject("main").getString("temp");
-                String description = weatherJSON.getJSONObject("weather").getString("description");
-                String weatherName = weatherJSON.getString("name");
+                String locationName = weatherJSON.getString("name");
+
+                Double doubleTemp = ((Double.parseDouble(weatherJSON.getJSONObject("main").getString("temp")) - 273) * 1.8) + 32;
+                int tempAsInt = doubleTemp.intValue();
+                String temperature = Integer.toString(tempAsInt) + "\u00B0 F";
 
 
-                Weather weather = new Weather(temperature, description, weatherName);
+
+
+                Weather weather = new Weather(temperature, locationName);
                 weathers.add(weather);
             }
         } catch (IOException e) {
