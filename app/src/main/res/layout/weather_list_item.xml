@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/weatherName"
+            android:id="@+id/locationName"
             android:textSize="20sp"
             android:textStyle="bold"
             android:text="City Name"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="Temperature"
             android:id="@+id/temperature"
-            android:layout_below="@+id/weatherName"
+            android:layout_below="@+id/locationName"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -35,6 +35,24 @@
             android:text="Description"
             android:id="@+id/description"
             android:layout_below="@+id/temperature"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunrise"
+            android:id="@+id/sunrise"
+            android:layout_below="@+id/description"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunset"
+            android:id="@+id/sunset"
+            android:layout_below="@+id/sunrise"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 

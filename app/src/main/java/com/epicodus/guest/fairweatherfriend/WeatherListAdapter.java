@@ -42,8 +42,11 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
     }
 
     public class WeatherViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.weatherName) TextView mWeatherName;
+        @Bind(R.id.locationName) TextView mLocationName;
         @Bind(R.id.temperature) TextView mTemperature;
+        @Bind(R.id.description) TextView mDescription;
+        @Bind(R.id.sunrise) TextView mSunrise;
+        @Bind(R.id.sunset) TextView mSunset;
 
         public WeatherViewHolder(View itemView) {
             super(itemView);
@@ -51,8 +54,11 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
         }
 
         public void bindWeather(Weather weather) {
-            mWeatherName.setText(weather.getmWeatherName());
+            mLocationName.setText(weather.getLocationName());
             mTemperature.setText(weather.getTemperature());
+            mDescription.setText(weather.getDescription());
+            mSunrise.setText(weather.getSunrise());
+            mSunset.setText(weather.getSunset());
         }
     }
 }

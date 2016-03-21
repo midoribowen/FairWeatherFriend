@@ -31,7 +31,6 @@ public class OpenWeatherService {
         this.mContext = context;
     }
 
-
     public void findWeather(String location, Callback callback) {
         String API_KEY = "e3157abb1472106b7c6deea26b11cbfe";
 
@@ -64,10 +63,12 @@ public class OpenWeatherService {
                 int tempAsInt = doubleTemp.intValue();
                 String temperature = Integer.toString(tempAsInt) + "\u00B0 F";
 
+                String description = weatherJSON.getJSONArray("weather").getJSONObject(0).getString("main");
 
+                String sunrise = weatherJSON.getJSONObject("sys").getString("sunrise");
+                String sunset = weatherJSON.getJSONObject("sys").getString("sunset");
 
-
-                Weather weather = new Weather(temperature, locationName);
+                Weather weather = new Weather(temperature, locationName, description, sunrise, sunset);
                 weathers.add(weather);
             }
         } catch (IOException e) {
