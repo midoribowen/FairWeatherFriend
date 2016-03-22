@@ -1,4 +1,4 @@
-package com.epicodus.guest.fairweatherfriend;
+package com.epicodus.guest.fairweatherfriend.models;
 
 public class Weather {
 

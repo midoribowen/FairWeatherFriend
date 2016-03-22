@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="Image Url"
+        android:id="@+id/imageUrl" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -11,23 +17,45 @@
         android:background="#FFFFFF"
         android:padding="10dp">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:text="Image Url"
-            android:id="@+id/imageUrl" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Day of Week"
+            android:id="@+id/dayOfWeek" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Datetime"
             android:id="@+id/dateTime" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Average Temp"
             android:id="@+id/dayTemp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Main Description"
+                android:id="@+id/mainDescription"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Supplementary Description"
+                android:id="@+id/suppDescription" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,17 +81,6 @@
             android:text="Humidity"
             android:id="@+id/humidity" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Main Description"
-            android:id="@+id/mainDescription" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Supplementary Description"
-            android:id="@+id/suppDescription" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,6 +100,6 @@
             android:text="Cloud Cover"
             android:id="@+id/clouds" />
 
-
     </LinearLayout>
+
 </LinearLayout>

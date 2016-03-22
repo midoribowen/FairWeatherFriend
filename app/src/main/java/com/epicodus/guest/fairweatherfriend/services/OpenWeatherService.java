@@ -1,15 +1,14 @@
-package com.epicodus.guest.fairweatherfriend;
+package com.epicodus.guest.fairweatherfriend.services;
 
 import android.content.Context;
-import android.content.pm.LauncherApps;
-import android.util.Log;
+
+import com.epicodus.guest.fairweatherfriend.models.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import okhttp3.Call;
@@ -36,9 +35,10 @@ public class OpenWeatherService {
 
         OkHttpClient client = new OkHttpClient();
 
-        HttpUrl.Builder urlBuilder = HttpUrl.parse("http://api.openweathermap.org/data/2.5/forecast?").newBuilder();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse("http://api.openweathermap.org/data/2.5/forecast?&units=imperial").newBuilder();
         urlBuilder.addQueryParameter("q", location);
         urlBuilder.addQueryParameter("appid", API_KEY);
+        urlBuilder.addQueryParameter("units", "imperial");
         String url = urlBuilder.build().toString();
 
         Request request = new Request.Builder()
