@@ -2,12 +2,17 @@ package com.epicodus.guest.fairweatherfriend;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -57,8 +62,15 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
             mLocationName.setText(weather.getLocationName());
             mTemperature.setText(weather.getTemperature());
             mDescription.setText(weather.getDescription());
-            mSunrise.setText(weather.getSunrise());
-            mSunset.setText(weather.getSunset());
+
+            int sunriseUnixSeconds = Integer.parseInt(weather.getSunrise());
+            String sunrise = DateFormat.getTimeInstance().format(sunriseUnixSeconds*1000L);
+            mSunrise.setText(sunrise);
+
+            int sunsetUnixSeconds = Integer.parseInt(weather.getSunset());
+            String sunset = DateFormat.getTimeInstance().format(sunsetUnixSeconds*1000L);
+            mSunset.setText(sunset);
+
         }
     }
 }
