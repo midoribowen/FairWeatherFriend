@@ -6,7 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,9 +22,7 @@ import java.util.TimeZone;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by Guest on 3/21/16.
- */
+
 public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.WeatherViewHolder> {
     private ArrayList<Weather> mWeathers = new ArrayList<>();
     private Context mContext;
@@ -47,11 +50,21 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
     }
 
     public class WeatherViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.locationName) TextView mLocationName;
-        @Bind(R.id.temperature) TextView mTemperature;
-        @Bind(R.id.description) TextView mDescription;
-        @Bind(R.id.sunrise) TextView mSunrise;
-        @Bind(R.id.sunset) TextView mSunset;
+
+
+        @Bind(R.id.imageUrl) ImageView mImageUrl;
+        @Bind(R.id.dateTime) TextView mDateTime;
+        @Bind(R.id.dayTemp) TextView mDayTemp;
+        @Bind(R.id.dayTempLow) TextView mDayTempLow;
+        @Bind(R.id.dayTempHigh) TextView mDayTempHigh;
+        @Bind(R.id.pressure) TextView mPressure;
+        @Bind(R.id.humidity) TextView mHumidity;
+        @Bind(R.id.mainDescription) TextView mMainDescription;
+        @Bind(R.id.suppDescription) TextView mSuppDescription;
+        @Bind(R.id.windSpeed) TextView mWindSpeed;
+        @Bind(R.id.windDirection) TextView mWindDirection;
+        @Bind(R.id.clouds) TextView mClouds;
+
 
         public WeatherViewHolder(View itemView) {
             super(itemView);
@@ -59,17 +72,32 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
         }
 
         public void bindWeather(Weather weather) {
-            mLocationName.setText(weather.getLocationName());
-            mTemperature.setText(weather.getTemperature());
-            mDescription.setText(weather.getDescription());
 
-            int sunriseUnixSeconds = Integer.parseInt(weather.getSunrise());
-            String sunrise = DateFormat.getTimeInstance().format(sunriseUnixSeconds*1000L);
-            mSunrise.setText(sunrise);
+            Picasso.with(mContext).load("http://openweathermap.org/img/w/" + weather.getImageUrl() + ".png").into(mImageUrl);
 
-            int sunsetUnixSeconds = Integer.parseInt(weather.getSunset());
-            String sunset = DateFormat.getTimeInstance().format(sunsetUnixSeconds*1000L);
-            mSunset.setText(sunset);
+            int dateTimeUnixSeconds = Integer.parseInt(weather.getDateTime());
+            String dateTime = DateFormat.getDateTimeInstance().format(dateTimeUnixSeconds*1000L);
+            mDateTime.setText(dateTime);
+
+            mDayTemp.setText(weather.getDayTemp());
+
+            mDayTempLow.setText(weather.getDayTempLow());
+
+            mDayTempHigh.setText(weather.getDayTempHigh());
+
+            mPressure.setText(weather.getPressure());
+
+            mHumidity.setText(weather.getHumidity());
+
+            mMainDescription.setText(weather.getMainDescription());
+
+            mSuppDescription.setText(weather.getSuppDescription());
+
+            mWindSpeed.setText(weather.getWindSpeed());
+
+            mWindDirection.setText(weather.getWindDirection());
+
+            mClouds.setText(weather.getClouds());
 
         }
     }

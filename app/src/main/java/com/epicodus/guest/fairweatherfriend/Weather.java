@@ -1,41 +1,93 @@
 package com.epicodus.guest.fairweatherfriend;
 
-import java.util.ArrayList;
-
-/**
- * Created by Guest on 3/21/16.
- */
 public class Weather {
 
-    private String mTemperature;
     private String mLocationName;
-    private String mDescription;
-    private String mSunrise;
-    private String mSunset;
+    private String mLocationId;
+    private String mDateTime;
+    private String mDayTemp;
+    private String mDayTempLow;
+    private String mDayTempHigh;
+    private String mPressure;
+    private String mHumidity;
+    private String mMainDescription;
+    private String mSuppDescription;
+    private String mImageUrl;
+    private String mWindSpeed;
+    private String mWindDirection;
+    private String mClouds;
 
-    public Weather(String temperature, String locationName, String description, String sunrise, String sunset) {
-        this.mTemperature = temperature;
+    public Weather(String locationName, String locationId, String dateTime, String dayTemp, String dayTempLow, String dayTempHigh, String pressure, String humidity, String mainDescription, String suppDescription, String imageUrl, String windSpeed, String windDirection, String clouds) {
         this.mLocationName = locationName;
-        this.mDescription = description;
-        this.mSunrise = sunrise;
-        this.mSunset = sunset;
+        this.mLocationId = locationId;
+        this.mDateTime = dateTime;
+        this.mDayTemp = dayTemp;
+        this.mDayTempLow = dayTempLow;
+        this.mDayTempHigh = dayTempHigh;
+        this.mPressure = pressure;
+        this.mHumidity = humidity;
+        this.mMainDescription = mainDescription;
+        this.mSuppDescription = suppDescription;
+        this.mImageUrl = imageUrl;
+        this.mWindSpeed = windSpeed;
+        this.mWindDirection = windDirection;
+        this.mClouds = clouds;
     }
 
-    public String getTemperature() {
-        return mTemperature;
+    public String getLocationName() {
+        return mLocationName;
     }
 
-    public String getLocationName() { return mLocationName; }
-
-    public String getDescription() {
-        return mDescription;
+    public String getLocationId() {
+        return mLocationId;
     }
 
-    public String getSunrise() {
-        return mSunrise;
+    public String getDateTime() {
+        return mDateTime;
     }
 
-    public String getSunset() {
-        return mSunset;
+    public String getDayTemp() {
+        return mDayTemp;
     }
+
+    public String getDayTempLow() {
+        return mDayTempLow;
+    }
+
+    public String getDayTempHigh() {
+        return mDayTempHigh;
+    }
+
+    public String getPressure() {
+        return mPressure;
+    }
+
+    public String getHumidity() {
+        return mHumidity;
+    }
+
+    public String getMainDescription() {
+        return mMainDescription;
+    }
+
+    public String getSuppDescription() {
+        return mSuppDescription;
+    }
+
+    public String getImageUrl() {
+        return mImageUrl;
+    }
+
+    public String getWindSpeed() {
+        return mWindSpeed;
+    }
+
+    public String getWindDirection() {
+        return mWindDirection;
+    }
+
+    public String getClouds() {
+        return mClouds;
+    }
+
 }

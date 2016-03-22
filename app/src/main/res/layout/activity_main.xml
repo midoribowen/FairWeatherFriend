@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Fair Weather Friend"
+        android:text="Weather Friend"
         android:id="@+id/textView"
         android:textColor="@color/colorPrimaryText"
         android:layout_alignParentTop="true"
@@ -28,7 +28,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find My Fair Weather!"
+        android:text="Find My Weather!"
         android:id="@+id/findWeatherButton"
         android:background="@color/colorAccent"
         android:textColor="@color/colorPrimaryText"
@@ -41,11 +41,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/locationEditText"
-        android:hint="Enter your Zip Code"
+        android:hint="Enter a Location"
         android:textColorHint="@color/colorPrimaryText"
         android:background="@color/colorIconsOpaque"
         android:textColor="@color/colorPrimaryText"
-        android:inputType="number"
+        android:inputType="textPostalAddress"
         android:layout_above="@+id/findWeatherButton"
         android:layout_centerHorizontal="true" />
 

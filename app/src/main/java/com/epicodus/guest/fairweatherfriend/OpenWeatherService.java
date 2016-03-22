@@ -36,8 +36,8 @@ public class OpenWeatherService {
 
         OkHttpClient client = new OkHttpClient();
 
-        HttpUrl.Builder urlBuilder = HttpUrl.parse("http://api.openweathermap.org/data/2.5/weather?").newBuilder();
-        urlBuilder.addQueryParameter("zip", location);
+        HttpUrl.Builder urlBuilder = HttpUrl.parse("http://api.openweathermap.org/data/2.5/forecast?").newBuilder();
+        urlBuilder.addQueryParameter("q", location);
         urlBuilder.addQueryParameter("appid", API_KEY);
         String url = urlBuilder.build().toString();
 
@@ -57,19 +57,29 @@ public class OpenWeatherService {
             String jsonData = response.body().string();
             if (response.isSuccessful()) {
                 JSONObject weatherJSON = new JSONObject(jsonData);
-                String locationName = weatherJSON.getString("name");
+                JSONArray listJSON = weatherJSON.getJSONArray("list");
+                for (int i = 0; i < listJSON.length(); i++) {
+                    JSONObject dayJSON = listJSON.getJSONObject(i);
+                    String locationName = weatherJSON.getJSONObject("city").getString("name");
+                    String locationId = weatherJSON.getJSONObject("city").getString("id");
+                    String dateTime = dayJSON.getString("dt");
+                    String dayTemp = dayJSON.getJSONObject("main").getString("temp");
+                    String dayTempLow = dayJSON.getJSONObject("main").getString("temp_min");
+                    String dayTempHigh = dayJSON.getJSONObject("main").getString("temp_max");
+                    String pressure = dayJSON.getJSONObject("main").getString("pressure");
+                    String humidity = dayJSON.getJSONObject("main").getString("humidity");
+                    String mainDescription = dayJSON.getJSONArray("weather").getJSONObject(0).getString("main");
+                    String suppDescription = dayJSON.getJSONArray("weather").getJSONObject(0).getString("description");
+                    String descriptionIcon = dayJSON.getJSONArray("weather").getJSONObject(0).getString("icon");
+                    String windSpeed = dayJSON.getJSONObject("wind").getString("speed");
+                    String windDirection = dayJSON.getJSONObject("wind").getString("deg");
+                    String clouds = dayJSON.getJSONObject("clouds").getString("all");
 
-                Double doubleTemp = ((Double.parseDouble(weatherJSON.getJSONObject("main").getString("temp")) - 273) * 1.8) + 32;
-                int tempAsInt = doubleTemp.intValue();
-                String temperature = Integer.toString(tempAsInt) + "\u00B0 F";
+                    Weather dayOfWeather = new Weather(locationName, locationId, dateTime, dayTemp, dayTempLow, dayTempHigh, pressure, humidity, mainDescription, suppDescription, descriptionIcon, windSpeed, windDirection, clouds);
+                    weathers.add(dayOfWeather);
+                }
 
-                String description = weatherJSON.getJSONArray("weather").getJSONObject(0).getString("main");
 
-                String sunrise = weatherJSON.getJSONObject("sys").getString("sunrise");
-                String sunset = weatherJSON.getJSONObject("sys").getString("sunset");
-
-                Weather weather = new Weather(temperature, locationName, description, sunrise, sunset);
-                weathers.add(weather);
             }
         } catch (IOException e) {
             e.printStackTrace();
